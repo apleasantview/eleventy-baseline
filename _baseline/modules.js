@@ -8,6 +8,7 @@ import assetsPostCSS from "./modules/assets-postcss/plugins/assets-postcss.js";
 import assetsESBuild from "./modules/assets-esbuild/plugins/assets-esbuild.js";
 import navigatorCore from "./modules/navigator-core/plugins/navigator-core.js";
 import navigatorContext from "./modules/navigator-context/plugins/navigator-context.js";
+import headCore from "./modules/head-core/plugins/head-core.js";
 
 export default {
 	EleventyHtmlBasePlugin,
@@ -16,5 +17,6 @@ export default {
 	assetsPostCSS,
 	assetsESBuild,
 	navigatorCore,
-	navigatorContext
+	navigatorContext,
+	headCore
 };

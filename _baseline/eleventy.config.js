@@ -46,6 +46,7 @@ export default function baseline(options = {}) {
 		eleventyConfig.addPlugin(modules.assetsESBuild);
 		eleventyConfig.addPlugin(modules.navigatorCore);
 		eleventyConfig.addPlugin(modules.navigatorContext);
+		eleventyConfig.addPlugin(modules.headCore);
 
 		// Shortcodes.
 		eleventyConfig.addShortcode("image", shortcodes.imageShortcode);
