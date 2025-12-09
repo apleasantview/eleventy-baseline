@@ -17,11 +17,12 @@ Things might shift, break, or get renamed as the project evolves.
 - JS bundling with esbuild
 - Filter to inline bundled JS where needed
 - Image handling via eleventy-img with a custom shortcode
+- Head/meta injection via `head-core` (baseline-head tag + defaults for title/description/robots/OG/Twitter)
 
 ## Planned / Exploratory Features
 
 - Directory-based multilingual support
-- Head/meta generator
+- Expanded head/SEO helpers (canonical image defaults, JSON-LD presets)
 - SEO helpers (JSON-LD, canonical URLs, sitemaps)
 
 The long-term goal is to offer just enough structure and tooling to start a new Eleventy site quickly, while respecting Eleventy’s deliberately unopinionated nature.
