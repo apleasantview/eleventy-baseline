@@ -12,8 +12,11 @@ export default async function (eleventyConfig) {
 		Bob: "My number one guy."
 	}));
 
-	eleventyConfig.addCollection("docs", (collectionApi) => {
-		return collectionApi.getFilteredByGlob("src/content/en/docs/**/*.md");
+	eleventyConfig.addCollection("docs", function (collectionApi) {
+		const docs = collectionApi.getFilteredByGlob("src/content/en/docs/**/*.md");
+		return docs.sort(function (a, b) {
+			return a.inputPath.localeCompare(b.inputPath);
+		});
 	});
 };
 
