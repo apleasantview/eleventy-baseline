@@ -6,11 +6,12 @@ permalink: /
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-	<p><strong><u>Index</u></strong></p>
-	<ul role="list" style="padding-left: 0">
-		{% for item in collections.all %}
-		<li><a href="{{ item.url }}">{{ item.url }}</a></li>
+	{% set topics = collections.docs | groupby("data.topicTitle") %}
+		{% for topic, items in topics %}
+			<p><strong>{{ topic }}</strong></p>
+			{% for item in items %}
+				<a href="{{ item.page.url }}">{{ item.data.title }}</a>
+			{% endfor %}
 		{% endfor %}
-	</ul>
 {% endblock %}
 
