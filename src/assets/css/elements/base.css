@@ -16,6 +16,7 @@ body {
 }
 
 main>*+p,
+main>*+h2,
 main>*+h3,
 main>*+blockquote {
 	margin-block-start: 1em;

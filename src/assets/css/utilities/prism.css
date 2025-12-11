@@ -50,7 +50,7 @@
   --prism-marker-font-size: 0.8em;
 
   /* Font */
-  --prism-font-size: 1em;
+  --prism-font-size: var(--body-text-size);
   --prism-line-height: 1.5em;
   --prism-font-family: monospace;
   --prism-inline-font-size: var(--prism-font-size);
@@ -59,8 +59,8 @@
   /* Sizing */
   --prism-tab-size: 2;
 
-  --prism-block-padding-x: 1em;
-  --prism-block-padding-y: 1em;
+  --prism-block-padding-x: 0.71em;
+  --prism-block-padding-y: 0.71em;
   --prism-block-margin-x: 0;
   --prism-block-margin-y: 0.5em;
   --prism-block-radius: 0.3em;

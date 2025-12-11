@@ -9,12 +9,12 @@
 			Skip to main content
 		</a>
 		<header>
-			<h1>{{ site.title }}</h1>
+			<p><strong>{{ site.title }}</strong></p>
 			<p>{{ site.tagline }}</p>
-			<p><a href="{{ site.baseURL | htmlBaseUrl}}">Homepage</a></p>
+			<p><a href="{{ site.baseURL | htmlBaseUrl}}"><small>Homepage</small></a></p>
 		</header>
 		<main id="main" tabindex="-1">
-			<h2>{{ title }}</h2>
+			<h1>{{ title }}</h1>
 			{% block content %}
 				<p>
 					No content found.
