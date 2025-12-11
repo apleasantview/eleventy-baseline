@@ -15,10 +15,8 @@ body {
 	background-color: var(--surface-color);
 }
 
-main>*+p,
-main>*+h2,
-main>*+h3,
-main>*+blockquote {
+header> * + *,
+main > * + * {
 	margin-block-start: 1em;
 }
 
@@ -33,7 +31,7 @@ footer {
 }
 
 p {
-	max-width: 75ch;
+	max-width: 78ch;
 }
 
 
