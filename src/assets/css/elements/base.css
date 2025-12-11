@@ -56,11 +56,29 @@ pre {
 }
 
 blockquote {
+	--alert-type: var(--border-color-strong);
 	border: 0.0625em solid var(--border-color);
-	border-left: 0.16em solid var(--accent-color);
+	border-left: 0.24em solid var(--alert-type);
 	padding: 0.5em;
 	padding-inline-end: 0.75em;
 	box-sizing: content-box;
 	max-width: fit-content;
 	vertical-align: middle;
+	margin-block: var(--space-inset-m);
+
+	&.alert-info {
+		--alert-type: var(--accent-color);
+	}
+
+	&.alert-success {
+		--alert-type: var(--success-color);
+	}
+
+	&.alert-warning {
+		--alert-type: var(--warning-color);
+	}
+
+	&.alert-danger {
+		--alert-type: var(--danger-color);
+	}
 }

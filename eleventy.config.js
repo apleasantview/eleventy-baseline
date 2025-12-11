@@ -18,6 +18,16 @@ export default async function (eleventyConfig) {
 			return a.inputPath.localeCompare(b.inputPath);
 		});
 	});
+
+	eleventyConfig.addNunjucksFilter("alertBlock", function(text, type = "info") { 
+		// this.env.filters.safe(doThing(value))
+		const res = this.env.render("./src/_includes/layouts/components/alerts.njk", {
+			content: text,
+			type: type
+		});
+		debugger;
+		return this.env.filters.safe(res);
+	});
 };
 
 export const config = _config;

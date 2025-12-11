@@ -9,7 +9,10 @@ permalink: /
 	<h1>{{ title }}</h1>
 
 	<p><strong>Eleventy Baseline</strong> is an experimental Swiss army knife for Eleventy: small, prewired helpers for assets, head/meta, images, and debug so you spend less time wiring the same pieces.</p>
-	<p>Work in progress: docs and APIs may shift. Start with the getting-started docs below.</p>
+
+	{% filter alertBlock("info") %}
+		Work in progress: docs and APIs may shift. Start with the getting-started docs below.
+	{% endfilter %}
 
 	{% include "layouts/components/docs-toc.njk" %}
 {% endblock %}
