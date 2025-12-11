@@ -1,7 +1,7 @@
 {
-  "name": "eleventy-baseline",
+  "name": "eleventy-plugin-baseline",
   "version": "1.0.0",
-  "description": "Eleventy baseline project",
+  "description": "An experimental Swiss army knife toolkit for Eleventy",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -18,6 +18,14 @@
   },
   "author": "Cristovao Verstraeten",
   "license": "ISC",
+  "keywords": [
+    "eleventy-plugin",
+    "eleventy"
+  ],
+  "repository": {
+    "url": "git@github.com:apleasantview/eleventy-plugin-baseline.git",
+    "type": "git"
+  },
   "private": true,
   "dependencies": {
     "@11ty/eleventy": "3.1.2",
