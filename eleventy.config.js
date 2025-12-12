@@ -19,12 +19,12 @@ export default async function (eleventyConfig) {
 		});
 	});
 
-	eleventyConfig.addNunjucksFilter("alertBlock", function(text, type = "info") { 
-		const res = this.env.render("./src/_includes/layouts/components/alerts.njk", {
+	eleventyConfig.addPairedNunjucksShortcode("alertBlock", function(text, type = "info") { 
+		const res = this.env.render("layouts/components/alerts.njk", {
 			content: text,
 			type: type
 		});
-		return this.env.filters.safe(res);
+		return res;
 	});
 };
 
