@@ -66,6 +66,7 @@ blockquote {
 	max-width: fit-content;
 	vertical-align: middle;
 	margin-block: var(--space-inset-m);
+	border-radius: 0 0.25em 0.25em 0;
 
 	&.alert-info {
 		--alert-type: var(--accent-color);

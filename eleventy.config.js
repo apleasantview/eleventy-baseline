@@ -19,10 +19,10 @@ export default async function (eleventyConfig) {
 		});
 	});
 
-	eleventyConfig.addPairedNunjucksShortcode("alertBlock", function(text, type = "info") { 
+	eleventyConfig.addPairedNunjucksShortcode("alertBlock", function(text, alert = "info") { 
 		const res = this.env.render("components/alerts.njk", {
 			content: text,
-			type: type
+			type: alert
 		});
 		return res;
 	});
