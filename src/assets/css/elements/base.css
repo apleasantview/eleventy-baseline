@@ -84,3 +84,7 @@ blockquote {
 		--alert-type: var(--danger-color);
 	}
 }
+
+details summary {
+	cursor: pointer;
+}
