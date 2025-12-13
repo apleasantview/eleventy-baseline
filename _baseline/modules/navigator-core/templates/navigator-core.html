@@ -1,0 +1,48 @@
+---
+title: Navigator Core
+meta: Very important page
+permalink: /navigator-core.html
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.defaultLanguage }}">
+
+<head>
+	<baseline-head></baseline-head>
+</head>
+
+<body>
+	<a href="#main" class="skip-link">
+		Skip to main content
+	</a>
+	<header>
+		<h1>{{ site.title }} Navigator</h1>
+		<div>
+			<p>{{ site.tagline }}</p>
+			<p><a href="{{ site.baseURL | htmlBaseUrl}}">{{ site.baseURL | htmlBaseUrl}}</a></p>
+		</div>
+	</header>
+	<main id="main" tabindex="-1">
+		<p>{{ page.outputPath }}</p>
+		<h2><u>Navigator</u></h2>
+		{% for key, value in _navigator() %}
+		<details>
+			<summary><strong>{{ key }}</strong></summary>
+			{% if value | isString %}
+				{% highlight "js" %}
+					{{ value | safe }}
+				{% endhighlight %}
+			{% else %}
+				{% highlight "js" %}
+					{{ value | inspect | safe }}
+				{% endhighlight %}
+			{% endif %}
+		</details>
+		{% endfor %}
+	</main>
+</body>
+<footer>
+	<small>Build: {{ helpers.buildCommit() }}</small>
+</footer>
+
+</html>

@@ -1,26 +1,29 @@
-import fs from "node:fs/promises";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { getVerbose } from "../../../helpers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
-export default function(eleventyConfig, options = {}) {
-  eleventyConfig.addNunjucksGlobal("_navigator", function() {
-		return this;
-	})
-
-	if (getVerbose(eleventyConfig)) {
-		// Read virtual template synchronously; Nunjucks pipeline here is sync-only.
-		const templatePath = path.join(__dirname, "../templates/core-navigator.html");
-		const virtualTemplateContent = fs.readFile(templatePath, "utf-8");
-	
-		eleventyConfig.addTemplate("core-navigator.html", virtualTemplateContent, {
-			permalink: "/core-navigator/",
-			title: "Core Navigator",
-			meta: "Very important page",
-		});
+export default function (eleventyConfig, options = {}) {
+	const userOptions = {
+		enableVirtualTemplate: process.env.ELEVENTY_ENV !== "production",
+		...options
 	};
+
+	eleventyConfig.addNunjucksGlobal("_navigator", function () { return this; });
+	eleventyConfig.addNunjucksGlobal("_context", function () { return this.ctx; });
+
+	if (userOptions.enableVirtualTemplate) {
+		// Read virtual template synchronously; Nunjucks pipeline here is sync-only.
+		const templatePath = path.join(__dirname, "../templates/navigator-core.html");
+		const virtualTemplateContent = fs.readFileSync(templatePath, "utf-8");
+
+		eleventyConfig.addTemplate("navigator-core.html", virtualTemplateContent, {
+			permalink: "/navigator-core.html",
+			title: "Navigator Core",
+			description: "",
+		});
+	}
 }

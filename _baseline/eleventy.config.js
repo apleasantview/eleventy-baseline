@@ -54,7 +54,6 @@ export default function baseline(options = {}) {
 		eleventyConfig.addFilter("json", debug.json);
 		eleventyConfig.addFilter("keys", debug.keys);
 		eleventyConfig.addPlugin(modules.navigatorCore);
-		eleventyConfig.addPlugin(modules.navigatorContext);
 	};
 }
 
