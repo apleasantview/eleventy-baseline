@@ -1,42 +1,35 @@
-/* Site config */
 import "dotenv/config";
-
 import debug from "./debug.js";
 import filters from "./filters.js";
 import modules from "./modules.js";
 import shortcodes from "./shortcodes.js";
 
 /**
- * Eleventy Baseline Plugin (factory-style)
+ * Eleventy Plugin Baseline
  * @param {object} options - Custom options for the plugin.
  * @returns {(eleventyConfig: UserConfig) => void}
  */
 export default function baseline(options = {}) {
 	/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
-	return async function(eleventyConfig) {
+	return async function (eleventyConfig) {
 		try {
 			// Emit a warning message if the application is not using Eleventy 3.0 or newer (including prereleases).
 			eleventyConfig.versionCheck(">=3.0");
-		} catch(e) {
-			console.log( `[eleventy-baseline] WARN Eleventy plugin compatibility: ${e.message}` );
+		} catch (e) {
+			console.log(`[eleventy-baseline] WARN Eleventy plugin compatibility: ${e.message}`);
 		}
 
-		const userOptions = { 
+		const userOptions = {
 			verbose: options.verbose ?? false,
-			...options 
+			...options
 		};
 
+		// Core  functions.
 		eleventyConfig.addGlobalData("_baseline", userOptions);
+		eleventyConfig.addPassthroughCopy({ "./src/static": "/" }, { failOnError: true });
 
-		// Filters.
-		eleventyConfig.addFilter("markdownify", filters.markdownFilter);
-		eleventyConfig.addFilter("relatedPosts", filters.relatedPostsFilter);
-		eleventyConfig.addFilter("inlinePostCSS", filters.inlinePostCSS);
-		eleventyConfig.addFilter("inlineESbuild", filters.inlineESbuild);
-		eleventyConfig.addFilter("isString", filters.isStringFilter);
-
-		// Passthrough copy.
-		eleventyConfig.addPassthroughCopy({ "./src/static": "/" });
+		// Watch target — Possibly moving this to assets-core.
+		eleventyConfig.addWatchTarget('./src/assets/**/*.{css,js,svg,png,jpeg}');
 
 		// Modules.
 		eleventyConfig.addPlugin(modules.EleventyHtmlBasePlugin, { baseHref: process.env.URL || "/" });
@@ -44,20 +37,24 @@ export default function baseline(options = {}) {
 		eleventyConfig.addPlugin(modules.assetsCore);
 		eleventyConfig.addPlugin(modules.assetsPostCSS);
 		eleventyConfig.addPlugin(modules.assetsESBuild);
-		eleventyConfig.addPlugin(modules.navigatorCore);
-		eleventyConfig.addPlugin(modules.navigatorContext);
 		eleventyConfig.addPlugin(modules.headCore);
+
+		// Filters — Module filters might move to their respective module.
+		eleventyConfig.addFilter("markdownify", filters.markdownFilter);
+		eleventyConfig.addFilter("relatedPosts", filters.relatedPostsFilter);
+		eleventyConfig.addFilter("inlinePostCSS", filters.inlinePostCSS);
+		eleventyConfig.addFilter("inlineESbuild", filters.inlineESbuild);
+		eleventyConfig.addFilter("isString", filters.isStringFilter);
 
 		// Shortcodes.
 		eleventyConfig.addShortcode("image", shortcodes.imageShortcode);
 
-		// Watch target.
-		eleventyConfig.addWatchTarget('./src/assets/**/*.{css,js,svg,png,jpeg}');
-
-		// Debug filters.
+		// Debug filters and navigators.
 		eleventyConfig.addFilter("inspect", debug.inspect);
 		eleventyConfig.addFilter("json", debug.json);
 		eleventyConfig.addFilter("keys", debug.keys);
+		eleventyConfig.addPlugin(modules.navigatorCore);
+		eleventyConfig.addPlugin(modules.navigatorContext);
 	};
 }
 
